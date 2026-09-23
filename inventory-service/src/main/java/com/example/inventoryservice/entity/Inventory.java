@@ -1,4 +1,4 @@
-package com.example.pharmacyservice.entity;
+package com.example.inventoryservice.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,12 +13,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-/**
- * Entity lưu trữ thông tin tồn kho thuốc cục bộ tại chi nhánh (Local Inventory).
- * Được sử dụng làm nguồn dữ liệu dự phòng khi kho tổng mất kết nối (Fallback).
- */
 @Entity
 @Table(name = "local_inventories")
 @Getter
@@ -32,28 +29,29 @@ public class Inventory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(name = "medicine_code", nullable = false, unique = true, length = 50)
     private String medicineCode;
 
-    @Column(nullable = false, length = 200)
+    @Column(name = "medicine_name", nullable = false, length = 200)
     private String medicineName;
 
-    @Column(nullable = false)
+    @Column(name = "local_stock_quantity", nullable = false)
     private Integer localStockQuantity;
 
-    @Column(nullable = false, precision = 12, scale = 2)
+    @Column(name = "unit_price", nullable = false, precision = 12, scale = 2)
     private BigDecimal unitPrice;
 
-    @Column(length = 100)
+    @Column(name = "shelf_location", length = 100)
     private String shelfLocation;
 
     @Column(name = "expiry_date")
-    private java.time.LocalDate expiryDate;
+    private LocalDate expiryDate;
 
     @Builder.Default
     @Column(name = "status", length = 50)
     private String status = "AVAILABLE";
 
     @Builder.Default
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt = LocalDateTime.now();
 }

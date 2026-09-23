@@ -26,6 +26,8 @@ dependencies {
     // WebMVC & Validation
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 
     // Spring Cloud Config Client & Actuator
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
@@ -36,6 +38,8 @@ dependencies {
 
     // Database: JPA & PostgreSQL
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-kafka'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
     runtimeOnly 'org.postgresql:postgresql'
 
     // Developer tools
